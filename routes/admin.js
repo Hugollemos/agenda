@@ -16,14 +16,8 @@ router.get("/categorias", (req, res) => {
 router.get('/categorias/add', (req, res) => {
   res.render("admin/addcategorias")
 })
-<<<<<<< HEAD
 router.get("/teste", (req, res) => {
   res.send("isso é um teste")
-=======
-
-router.get("/teste", (req, res) => {
-  res.send("Isso é um teste")
->>>>>>> f34459e8020f86c4cb7487b84ae7fedea1042d2e
 })
 
 module.exports = router
