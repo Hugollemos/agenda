@@ -5,20 +5,25 @@ const app = express()
 const admin = require("./routes/admin")
 const path = require("path")
 const mongoose = require("mongoose")
+require("dotenv").config();
+
 //Configurações
-//body Parser
+const URI = process.env.MONGODB_CONNECTION_STRING;
+
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 //Handlebars
 app.engine('handlebars', handlebars({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars');
 // Mongoose
-mongoose.connect("mongodb://localhost/blogapp", { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
-  console.log("Conectado com sucesso!")
-}).catch((err) => {
-  mongoose.Promise = global.Promise;
-  console.log("Erro ao conectar: " + err)
+
+mongoose.connect(URI, {
+}).then(()=>{
+    console.log('Database Connected');
+}).catch(err=>{
+  console.log('Database not connected'+err)
 })
+
 // Public
 app.use(express.static(path.join(__dirname, 'public')))
 // Rotas
